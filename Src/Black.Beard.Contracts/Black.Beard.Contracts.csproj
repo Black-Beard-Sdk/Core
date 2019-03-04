@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RootNamespace>Bb</RootNamespace>
+    <PackageProjectUrl>https://github.com/Black-Beard-Sdk/Core</PackageProjectUrl>
+    <Authors>Black Beard</Authors>
+    <Product>Black.Beard.Contracts</Product>
+    <Copyright>Black Beard</Copyright>
+    <PackageLicenseUrl>https://github.com/Black-Beard-Sdk/Core/blob/master/LICENSE</PackageLicenseUrl>
+    <Version>1.0.1</Version>
+  </PropertyGroup>
+
+</Project>
