@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace Bb.Core.Helpers
+namespace Bb.Helpers
 {
 
     public static class Globals

@@ -9,9 +9,20 @@ using System.Reflection;
 namespace Bb.Core.ComponentModel
 {
 
+    /// <summary>
+    /// very helpfull expression helper
+    /// </summary>
     public static class ExpressionHelper
     {
 
+        /// <summary>
+        /// Smarts convert help to create expression with many consideration on source type and target type.
+        /// if no converter found yo can create one in custom class decorated '[Bb.ComponentModel.Attributes.ExposeClass(Context = ConstantsCore.Cast)]'
+        /// </summary>
+        /// <param name="self">The self.</param>
+        /// <param name="targetType">Type of the target.</param>
+        /// <returns></returns>
+        /// <exception cref="System.InvalidCastException">no adapted method cast found for {argument.Type.Name} -> {targetType.Name}</exception>
         public static Expression SmartConvert(this Expression self, Type targetType)
         {
 
@@ -42,7 +53,7 @@ namespace Bb.Core.ComponentModel
                     if (convertMethod == null) // try in custom class
                     {
 
-                        var _types = TypeDiscovery.Instance.GetTypesWithAttributes<ExposeClassAttribute>(null, (attr) => attr.Context == Constants.Cast).ToList();
+                        var _types = TypeDiscovery.Instance.GetTypesWithAttributes<ExposeClassAttribute>(null, (attr) => attr.Context == ConstantsCore.Cast).ToList();
                             //.Where(c1 => c1.GetCustomAttributes(typeof(ExposeClassAttribute), false).Cast<ExposeClassAttribute>().First().Context == Constants.Cast)
                             //.ToList();
 
@@ -84,6 +95,7 @@ namespace Bb.Core.ComponentModel
         /// <returns></returns>
         public static MethodCallExpression MatchDictionaryOnMethodParameters(this MethodInfo method, Expression instance, Expression arg, bool ignoreCase = true)
         {
+
             if (method == null)
                 throw new ArgumentNullException(nameof(method));
 

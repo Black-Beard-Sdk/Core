@@ -1,12 +1,10 @@
 ﻿using Bb.ComponentModel.Attributes;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Bb.ComponentModel.Converts
 {
 
-    [ExposeClass(Context =Constants.Cast)]
+    [ExposeClass(Context = ConstantsCore.Cast)]
     public static class ConvertExtension
     {
 

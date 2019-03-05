@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 
-namespace Bb.Core.Helpers
+namespace Bb.Helpers
 {
 
     public static class DirectoryHelper

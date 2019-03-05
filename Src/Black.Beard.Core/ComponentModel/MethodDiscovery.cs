@@ -15,9 +15,9 @@ namespace Bb.ComponentModel
         /// <summary>
         /// Return the list of method from list of types
         /// </summary>
-        /// <param name="types">list of type where search method</param>
-        /// <param name="returnType">Not evaluated if null</param>
-        /// <param name="parameters">Not evaluated if null</param>
+        /// <param name="type">type the declare methods</param>
+        /// <param name="returnType">Not evaluated if null. method return type</param>
+        /// <param name="parameters">Not evaluated if null. method arguments type</param>
         /// <returns></returns>
         public static IEnumerable<MethodInfo> GetMethods(IEnumerable<Type> types, BindingFlags bindings, Type returnType, List<Type> parameters)
         {
@@ -34,9 +34,9 @@ namespace Bb.ComponentModel
         /// <summary>
         /// Return the list of method
         /// </summary>
-        /// <param name="type"></param>
-        /// <param name="returnType">Not evaluated if null</param>
-        /// <param name="parameters">Not evaluated if null</param>
+        /// <param name="type">type the declare methods</param>
+        /// <param name="returnType">Not evaluated if null. method return type</param>
+        /// <param name="parameters">Not evaluated if null. method arguments type</param>
         /// <returns></returns>
         public static IEnumerable<MethodInfo> GetMethods(Type type, BindingFlags bindings, Type returnType, List<Type> parameters)
         {

@@ -1,19 +1,8 @@
-﻿namespace Bb.RabbitMq.LogAppender
+﻿namespace Bb.Configurations
 {
 
     /// <summary>
-    /// Service to configure
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public interface IConfiguring<T> where T : IConfigurator<T>
-    {
-
-        void Configure(IConfigurator<T> configuration);
-
-    }
-
-        /// <summary>
-    /// Class use to configure a service
+    /// Class used to configurea service
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public interface IConfigurator
@@ -32,6 +21,8 @@
     /// <typeparam name="T"></typeparam>
     public interface IConfigurator<T> : IConfigurator
     {
+
+        void ConfigureService(T objectToConfigure);
 
     }
 

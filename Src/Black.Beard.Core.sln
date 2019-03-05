@@ -7,6 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Black.Beard.Contracts", "Bl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Black.Beard.Core", "Black.Beard.Core\Black.Beard.Core.csproj", "{8633C0F3-9ED5-4CEC-AA95-C3628FB3E715}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CED0D853-9F72-44B1-A5A2-CB8F96FCC303}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Black.Beard.Core.UnitTests", "Black.Beard.Core.UnitTests\Black.Beard.Core.UnitTests.csproj", "{BEA47486-F138-420D-9A33-B543B1CAF42E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +28,10 @@ Global
 		{8633C0F3-9ED5-4CEC-AA95-C3628FB3E715}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8633C0F3-9ED5-4CEC-AA95-C3628FB3E715}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8633C0F3-9ED5-4CEC-AA95-C3628FB3E715}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEA47486-F138-420D-9A33-B543B1CAF42E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEA47486-F138-420D-9A33-B543B1CAF42E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEA47486-F138-420D-9A33-B543B1CAF42E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEA47486-F138-420D-9A33-B543B1CAF42E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

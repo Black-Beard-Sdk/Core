@@ -79,7 +79,6 @@ namespace Bb.ComponentModel
                         throw new DirectoryNotFoundException(path);
 
                     _paths.Add(path);
-
                     //    Trace.WriteLine($" the type discover is initialized with path '{item.FullName}'");
 
                 }

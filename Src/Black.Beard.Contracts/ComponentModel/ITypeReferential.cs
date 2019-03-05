@@ -1,5 +1,4 @@
-﻿using Bb.ComponentModel.Accessors;
-using Bb.ComponentModel.Factories;
+﻿using Bb.ComponentModel.Factories;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -60,14 +59,6 @@ namespace Bb.ComponentModel
         List<Type> GetTypes(Func<Type, bool> fnc);
 
         Assembly AddAssemblyFile(string assemblyName, bool withPdb);
-
-        /// <summary>
-        /// return fast accessor's list to value for properties
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="withSubType">inclued sub properties in the list</param>
-        /// <returns></returns>
-        AccessorList GetProperties(Type source, bool withSubType);
 
         /// <summary>
         /// Resolve types argument and Creates an optimized factory for the specified arguments.

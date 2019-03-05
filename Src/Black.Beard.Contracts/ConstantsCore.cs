@@ -5,7 +5,7 @@ using System.Text;
 namespace Bb
 {
 
-    public static class Constants
+    public static class ConstantsCore
     {
 
         public const string Cast = "Cast";

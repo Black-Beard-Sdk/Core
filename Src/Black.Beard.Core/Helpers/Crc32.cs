@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Bb.Core.Helpers
+namespace Bb.Helpers
 {
 
     public static class Crc32
