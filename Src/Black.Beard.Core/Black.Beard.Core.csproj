@@ -8,6 +8,7 @@
     <Authors>Black Beard</Authors>
     <Copyright>Black Beard</Copyright>
     <Version>1.0.1</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

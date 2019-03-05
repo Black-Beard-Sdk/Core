@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 
@@ -26,6 +27,7 @@ namespace Bb.Core.Helpers
                 }
                 catch (Exception ex1)
                 {
+                    Trace.WriteLine(new { Exeption = ex1 });
                     result = false;
                 }
 
@@ -36,6 +38,7 @@ namespace Bb.Core.Helpers
                 }
                 catch (Exception ex2)
                 {
+                    Trace.WriteLine(new { Exeption = ex2 });
                     result = false;
                 }
 
@@ -46,6 +49,7 @@ namespace Bb.Core.Helpers
                 }
                 catch (Exception ex3)
                 {
+                    Trace.WriteLine(new { Exeption = ex3 });
                     result = false;
                 }
 
