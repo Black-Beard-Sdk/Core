@@ -8,6 +8,8 @@ namespace Bb
     public static class ConstantsCore
     {
 
+        public const string Configuration = "Configuration";
+
         public const string Cast = "Cast";
 
         public const string PerfMon = "PerfMon";

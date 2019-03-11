@@ -37,6 +37,12 @@ helper for discovers types
 
 helper for discovers methods
 
+Install
+
+``` 
+    Install-Package Black.Beard.Core
+```
+
 ### Sample
 ``` CSharp
 
@@ -71,3 +77,17 @@ helper for discovers properties and provide very fast property value accessor
 
 ```
 
+## Bb.ComponentModel.Attributes.IocRegisterAttribute
+
+If you want implement a automatique register ioc process you can use this attribute for provide ioc configuration
+
+```CSharp
+
+    [Bb.ComponentModel.Attributes.IocRegisterAttribute(typeof(IContractToResolveService, IocScopeEnum.Transient))]
+    public class Test : IContractToResolveService
+    {
+
+
+    }
+
+``` 
