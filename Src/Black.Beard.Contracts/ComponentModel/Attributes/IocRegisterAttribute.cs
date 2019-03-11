@@ -27,7 +27,7 @@ namespace Bb.ComponentModel.Attributes
     }
 
     [System.AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
-    sealed class IocRegisterAttribute : Attribute
+    public sealed class IocRegisterAttribute : Attribute
     {
 
         // This is a positional argument
