@@ -1,12 +1,71 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace Bb.ComponentModel
 {
     public static class TypeReferentialExtension
     {
 
+
+
+
+
+        /// <summary>
+        /// Gets the custom attribute attributes.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="self">The self.</param>
+        /// <returns></returns>
+        public static T[] GetAttributes<T>(this Type self) where T : Attribute
+        {
+            return self.GetCustomAttributes(false).OfType<T>().ToArray();
+        }
+
+        /// <summary>
+        /// Gets the custom attribute attributes.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="self">The self.</param>
+        /// <returns></returns>
+        public static T[] GetAttributes<T>(this MethodInfo self) where T : Attribute
+        {
+            return self.GetCustomAttributes(false).OfType<T>().ToArray();
+        }
+
+        /// <summary>
+        /// Gets the custom attribute attributes.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="self">The self.</param>
+        /// <returns></returns>
+        public static T[] GetAttributes<T>(this PropertyInfo self) where T : Attribute
+        {
+            return self.GetCustomAttributes(false).OfType<T>().ToArray();
+        }
+
+               /// <summary>
+        /// Gets the custom attribute attributes.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="self">The self.</param>
+        /// <returns></returns>
+        public static T[] GetAttributes<T>(this FieldInfo self) where T : Attribute
+        {
+            return self.GetCustomAttributes(false).OfType<T>().ToArray();
+        }
+
+               /// <summary>
+        /// Gets the custom attribute attributes.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="self">The self.</param>
+        /// <returns></returns>
+        public static T[] GetAttributes<T>(this EventInfo self) where T : Attribute
+        {
+            return self.GetCustomAttributes(false).OfType<T>().ToArray();
+        }
 
         /// <summary>
         /// lookk for all loaded assemblies and return types where class contains <see cref="Attributes.ExposeClassAttribute"/>. with context equals specified context
