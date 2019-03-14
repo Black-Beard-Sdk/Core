@@ -116,6 +116,10 @@ namespace Bb.ComponentModel
         /// <returns></returns>
         public List<Type> GetTypes(Func<Type, bool> typeFilter)
         {
+
+            if (typeFilter == null)
+                typeFilter = t => true;
+
             var result = new List<Type>();
             var assemblies = Assemblies().ToArray();
             result.AddRange(Collect(typeFilter, assemblies));
@@ -129,6 +133,13 @@ namespace Bb.ComponentModel
         /// <returns></returns>
         public List<Type> GetTypesWithAttributes(Type baseType, Type typeFilter)
         {
+
+            if (baseType == null)
+                baseType = typeof(object);
+
+            if (typeFilter == null)
+                typeFilter = typeof(Attribute);
+
             var result = new List<Type>();
             var assemblies = Assemblies().ToArray();
             result.AddRange(Collect(type =>
@@ -146,6 +157,10 @@ namespace Bb.ComponentModel
         /// <returns></returns>
         public List<Type> GetTypesWithAttributes(Type attributeTypeFilter)
         {
+
+            if (attributeTypeFilter == null)
+                attributeTypeFilter = typeof(Attribute);
+
             var result = new List<Type>();
             var assemblies = Assemblies().ToArray();
             result.AddRange(Collect(type =>
@@ -164,12 +179,17 @@ namespace Bb.ComponentModel
         /// <returns></returns>
         public List<Type> GetTypesWithAttributes<T>(Type typebase, Func<T, bool> filter) where T : Attribute
         {
+
+            if (typebase == null)
+                typebase = typeof(object);
+
             var result = new List<Type>();
             var assemblies = Assemblies().ToArray();
+
             result.AddRange(Collect(type =>
             {
 
-                if (typebase != null || type.IsAssignableFrom(typebase))
+                if (type.IsAssignableFrom(typebase))
                 {
 
                     var attributes = Attribute.GetCustomAttributes(type, typeof(T));

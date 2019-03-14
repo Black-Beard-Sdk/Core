@@ -53,9 +53,7 @@ namespace Bb.Core.ComponentModel
                     if (convertMethod == null) // try in custom class
                     {
 
-                        var _types = TypeDiscovery.Instance.GetTypesWithAttributes<ExposeClassAttribute>(null, (attr) => attr.Context == ConstantsCore.Cast).ToList();
-                            //.Where(c1 => c1.GetCustomAttributes(typeof(ExposeClassAttribute), false).Cast<ExposeClassAttribute>().First().Context == Constants.Cast)
-                            //.ToList();
+                        var _types = TypeDiscovery.Instance.GetTypesWithAttributes<ExposeClassAttribute>(typeof(object), (attr) => attr.Context == ConstantsCore.Cast).ToList();
 
                         foreach (var item in _types)
                             if ((convertMethod = MethodDiscovery.GetMethods(item, bindings, targetType, types).FirstOrDefault()) != null)
@@ -83,7 +81,6 @@ namespace Bb.Core.ComponentModel
             return argument;
 
         }
-
 
         /// <summary>
         /// Match parameters names of the method with dictionary key

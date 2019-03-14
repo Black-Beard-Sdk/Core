@@ -91,3 +91,16 @@ If you want implement a automatique register ioc process you can use this attrib
     }
 
 ``` 
+
+
+## Find exposed types
+
+If you expose types for autodetecting. You can easy find with method 'GetTypesWithAttributeExposeClass'
+
+The sample demonstrate how find all types with 'ExposeClassAttribute' of context = 'Cast' and return a list keyvaluepair display name, Type
+```CSharp
+
+    KeyValuePair<string, Type>[] _types = instance.GetTypesWithAttributeExposeClass<object>(Bb.ConstantsCore.Cast);
+
+``` 
+
