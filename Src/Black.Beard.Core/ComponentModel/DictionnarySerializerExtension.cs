@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 
-namespace Bb.Core.ComponentModel
+namespace Bb.ComponentModel
 {
 
     /// <summary>

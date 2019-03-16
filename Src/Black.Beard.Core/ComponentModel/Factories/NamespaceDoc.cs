@@ -1,5 +1,5 @@
 ﻿
-namespace Bb.Sdk.Factories
+namespace Bb.Factories
 {
 
     /// <summary>

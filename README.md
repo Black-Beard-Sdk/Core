@@ -104,3 +104,26 @@ The sample demonstrate how find all types with 'ExposeClassAttribute' of context
 
 ``` 
 
+Or
+```CSharp
+
+    var types = new ExposedTypes();
+
+    // add a new attribute in referential
+    types.Add(new ExposedTypeConfigurations()
+    {
+        TypeName = typeof(Test1).AssemblyQualifiedName,
+
+        Attributes = new List<ExposedAttributeTypeConfiguration>()
+        {
+            new ExposedAttributeTypeConfiguration()
+            {
+                Context = "Test33",
+            }
+        }
+    });
+
+    // Push missing attributes in the TypeDescriptor layer
+    types.AddAttributesInTypeDescriptors();
+
+```

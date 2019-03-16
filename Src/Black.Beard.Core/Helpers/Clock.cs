@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bb.Core.Helpers
+namespace Bb.Helpers
 {
 
     public class Clock

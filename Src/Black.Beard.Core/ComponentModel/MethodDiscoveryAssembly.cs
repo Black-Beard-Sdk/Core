@@ -1,6 +1,7 @@
 ﻿using Bb.ComponentModel.Attributes;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 
@@ -68,29 +69,40 @@ namespace Bb.ComponentModel
 
             var _result = new List<BusinessAction<T>>();
 
-            foreach (var type in types)
+            var _types = new ExposedTypes()
+               .GetTypes()
+               .Where(c => types.Contains(c.Key))
+               .ToList();
+
+            foreach (var u in _types)
             {
 
-                ExposeClassAttribute attribute1 = Attribute.GetCustomAttribute(type, typeof(ExposeClassAttribute)) as ExposeClassAttribute;
-                string name = attribute1.DisplayName ?? type.Name;
+                var type = u.Key;
 
-                var items = MethodDiscovery.GetMethods(type, bindings, returnType, methodSign);
-
-                foreach (var method in items)
+                foreach (ExposeClassAttribute attribute in u.Value)
                 {
 
-                    RegisterMethodAttribute attribute2 = Attribute.GetCustomAttribute(method, typeof(RegisterMethodAttribute)) as RegisterMethodAttribute;
-                    if (attribute2 != null && (string.IsNullOrEmpty(Context) || attribute2.Context == Context))
-                        _result.Add(new BusinessAction<T>
-                        {
-                            Name = $"{name}.{attribute2.DisplayName}",
-                            Method = method,
-                            Type = type,
-                            RuleName = attribute2.DisplayName,
-                            Origin = $"Assembly {type.AssemblyQualifiedName}",
-                            Context = attribute2.Context,
-                        });
+                    string name = attribute.Name ?? type.Name;
+
+                    var items = MethodDiscovery.GetMethods(type, bindings, returnType, methodSign);
+
+                    foreach (var method in items)
+                    {
+
+                        RegisterMethodAttribute attribute2 = TypeDescriptor.GetAttributes(method).OfType<RegisterMethodAttribute>().FirstOrDefault();
+                        if (attribute2 != null && (string.IsNullOrEmpty(Context) || attribute2.Context == Context))
+                            _result.Add(new BusinessAction<T>
+                            {
+                                Name = $"{name}.{attribute2.DisplayName}",
+                                Method = method,
+                                Type = type,
+                                RuleName = attribute2.DisplayName,
+                                Origin = $"Assembly {type.AssemblyQualifiedName}",
+                                Context = attribute2.Context,
+                            });
+                    }
                 }
+
             }
 
             return _result;

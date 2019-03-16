@@ -2,6 +2,7 @@
 using Bb.ComponentModel.Factories;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -144,10 +145,12 @@ namespace Bb.ComponentModel
             var assemblies = Assemblies().ToArray();
             result.AddRange(Collect(type =>
             {
-                return baseType.IsAssignableFrom(type) && Attribute.GetCustomAttributes(type, typeFilter).Any();
+                return baseType.IsAssignableFrom(type)
+                        && ToList(TypeDescriptor.GetAttributes(type)).Any(c => c.GetType() == typeFilter);
             }, assemblies));
 
             return result;
+
         }
 
         /// <summary>
@@ -165,10 +168,16 @@ namespace Bb.ComponentModel
             var assemblies = Assemblies().ToArray();
             result.AddRange(Collect(type =>
             {
-                return Attribute.GetCustomAttributes(type, attributeTypeFilter).Any();
+                return ToList(TypeDescriptor.GetAttributes(type)).Any(c => c.GetType() == attributeTypeFilter);
             }, assemblies));
 
             return result;
+        }
+
+        private IEnumerable<Attribute> ToList(AttributeCollection attributes)
+        {
+            foreach (Attribute attribute in attributes)
+                yield return attribute;
         }
 
         /// <summary>
@@ -180,19 +189,16 @@ namespace Bb.ComponentModel
         public List<Type> GetTypesWithAttributes<T>(Type typebase, Func<T, bool> filter) where T : Attribute
         {
 
-            if (typebase == null)
-                typebase = typeof(object);
-
             var result = new List<Type>();
             var assemblies = Assemblies().ToArray();
 
             result.AddRange(Collect(type =>
             {
 
-                if (type.IsAssignableFrom(typebase))
+                if (typebase == null || typebase.IsAssignableFrom(type))
                 {
 
-                    var attributes = Attribute.GetCustomAttributes(type, typeof(T));
+                    var attributes = TypeDescriptor.GetAttributes(type).OfType<T>().ToArray();
 
                     if (attributes.Length == 0)
                         return false;
@@ -200,6 +206,7 @@ namespace Bb.ComponentModel
                     foreach (T attribute in attributes)
                         if (filter(attribute))
                             return true;
+
                 }
 
                 return false;
@@ -209,6 +216,12 @@ namespace Bb.ComponentModel
             return result;
         }
 
+        /// <summary>
+        /// Resolves the type by specified name.
+        /// </summary>
+        /// <param name="targetType">Type of the target.</param>
+        /// <returns></returns>
+        /// <exception cref="DllNotFoundException"></exception>
         public Type ResolveByName(string targetType)
         {
 
@@ -396,7 +409,7 @@ namespace Bb.ComponentModel
                     catch (Exception e)
                     {
                         OnRegisterException(e);
-                        Trace.WriteLine(e,  TraceLevel.Error.ToString());
+                        Trace.WriteLine(e, TraceLevel.Error.ToString());
                     }
                 }
             }

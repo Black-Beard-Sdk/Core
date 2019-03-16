@@ -7,27 +7,104 @@ namespace Bb.ComponentModel.Attributes
     /// specify this class contains method to expose
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, Inherited = false)]
+    [System.Diagnostics.DebuggerDisplay("{Context} : {Name} : {LifeCycle}")]
     public sealed class ExposeClassAttribute : Attribute
     {
 
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExposeClassAttribute"/> class.
+        /// </summary>
         public ExposeClassAttribute()
         {
 
         }
 
         /// <summary>
-        /// 
+        /// Initializes a new instance of the <see cref="ExposeClassAttribute"/> class.
         /// </summary>
-        /// <param name="displayName">key for matching ruless</param>
-        public ExposeClassAttribute(string displayName)
+        /// <param name="context">key for matching ruless</param>
+        public ExposeClassAttribute(string context)
         {
-            this.DisplayName = displayName;
+            Context = context;
         }
 
-        public string DisplayName { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExposeClassAttribute"/> class.
+        /// </summary>
+        /// <param name="context">key for matching ruless</param>
+        /// <param name="display">The display.</param>
+        public ExposeClassAttribute(string context, string display)
+        {
+            Context = context;
+            this.Name = display;
+        }
 
+        /// <summary>
+        /// Gets or sets the display name.
+        /// </summary>
+        /// <value>
+        /// The display name.
+        /// </value>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the context of the class exposed byy this attribute.
+        /// </summary>
+        /// <value>
+        /// The context.
+        /// </value>
         public string Context { get; set; }
+
+        /// <summary>
+        /// Gets or sets the life cycle if must be use in Ioc.
+        /// </summary>
+        /// <value>
+        /// The life cycle.
+        /// </value>
+        public IocScopeEnum LifeCycle {get; set; }
+
+        /// <summary>
+        /// Determines whether the specified <see cref="System.Object" />, is equal to this instance.
+        /// </summary>
+        /// <param name="obj">The <see cref="System.Object" /> to compare with this instance.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+        /// </returns>
+        public override bool Equals(object obj)
+        {
+
+            if (obj == null)
+                return false;
+
+            if (obj is ExposeClassAttribute)
+                return this.GetHashCode() == obj.GetHashCode();
+
+            return false;
+
+        }
+
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// </returns>
+        public override int GetHashCode()
+        {
+
+            if (!string.IsNullOrEmpty(Context))
+            {
+                if (!string.IsNullOrEmpty(Name))
+                    return Context.GetHashCode() ^ Name.GetHashCode();
+
+                return Context.GetHashCode();
+            }
+
+            return base.GetHashCode();
+
+        }
+
+        public override object TypeId => base.TypeId;
 
     }
 

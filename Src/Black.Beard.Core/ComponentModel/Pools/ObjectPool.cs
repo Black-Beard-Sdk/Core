@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Bb.Core.Pools
+namespace Bb.Pools
 {
 
     public class ObjectPool<T> : IObjectPool<T>

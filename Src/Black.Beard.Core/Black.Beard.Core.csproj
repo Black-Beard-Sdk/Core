@@ -7,18 +7,22 @@
     <PackageProjectUrl>https://github.com/Black-Beard-Sdk/Core</PackageProjectUrl>
     <Authors>Black Beard</Authors>
     <Copyright>Black Beard</Copyright>
-    <Version>1.0.7</Version>
+    <Version>1.0.8</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ComponentModel\TypeDescriptors\**" />
     <Compile Remove="LocalQueue\**" />
+    <EmbeddedResource Remove="ComponentModel\TypeDescriptors\**" />
     <EmbeddedResource Remove="LocalQueue\**" />
+    <None Remove="ComponentModel\TypeDescriptors\**" />
     <None Remove="LocalQueue\**" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="System.ComponentModel" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>

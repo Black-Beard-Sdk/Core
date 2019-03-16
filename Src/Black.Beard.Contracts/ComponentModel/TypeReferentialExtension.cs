@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 
@@ -20,7 +21,8 @@ namespace Bb.ComponentModel
         /// <returns></returns>
         public static T[] GetAttributes<T>(this Type self) where T : Attribute
         {
-            return self.GetCustomAttributes(false).OfType<T>().ToArray();
+
+            return TypeDescriptor.GetAttributes(self).OfType<T>().ToArray();
         }
 
         /// <summary>
@@ -31,7 +33,7 @@ namespace Bb.ComponentModel
         /// <returns></returns>
         public static T[] GetAttributes<T>(this MethodInfo self) where T : Attribute
         {
-            return self.GetCustomAttributes(false).OfType<T>().ToArray();
+            return TypeDescriptor.GetAttributes(self).OfType<T>().ToArray();
         }
 
         /// <summary>
@@ -42,10 +44,10 @@ namespace Bb.ComponentModel
         /// <returns></returns>
         public static T[] GetAttributes<T>(this PropertyInfo self) where T : Attribute
         {
-            return self.GetCustomAttributes(false).OfType<T>().ToArray();
+            return TypeDescriptor.GetAttributes(self).OfType<T>().ToArray();
         }
 
-               /// <summary>
+        /// <summary>
         /// Gets the custom attribute attributes.
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -53,10 +55,10 @@ namespace Bb.ComponentModel
         /// <returns></returns>
         public static T[] GetAttributes<T>(this FieldInfo self) where T : Attribute
         {
-            return self.GetCustomAttributes(false).OfType<T>().ToArray();
+            return TypeDescriptor.GetAttributes(self).OfType<T>().ToArray();
         }
 
-               /// <summary>
+        /// <summary>
         /// Gets the custom attribute attributes.
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -64,7 +66,7 @@ namespace Bb.ComponentModel
         /// <returns></returns>
         public static T[] GetAttributes<T>(this EventInfo self) where T : Attribute
         {
-            return self.GetCustomAttributes(false).OfType<T>().ToArray();
+            return TypeDescriptor.GetAttributes(self).OfType<T>().ToArray();
         }
 
         /// <summary>
@@ -78,7 +80,7 @@ namespace Bb.ComponentModel
         {
             return self
                 .GetTypesWithAttributes<Attributes.ExposeClassAttribute>(typeof(T), attribute => attribute.Context == context)
-                .Select(c => new KeyValuePair<string, Type>(c.GetCustomAttributes(true).OfType<Attributes.ExposeClassAttribute>().FirstOrDefault().DisplayName, c))
+                .Select(c => new KeyValuePair<string, Type>(TypeDescriptor.GetAttributes(c).OfType<Attributes.ExposeClassAttribute>().FirstOrDefault().Name, c))
                 .ToArray();
         }
 

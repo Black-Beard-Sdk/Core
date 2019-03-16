@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bb.Core.Pools
+namespace Bb.Pools
 {
 
     /// <summary>
