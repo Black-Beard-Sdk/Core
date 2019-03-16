@@ -64,6 +64,14 @@ namespace Bb.ComponentModel.Attributes
         public IocScopeEnum LifeCycle {get; set; }
 
         /// <summary>
+        /// Gets or sets the exposition type.
+        /// </summary>
+        /// <value>
+        /// The type of the exposed.
+        /// </value>
+        public Type ExposedType { get; set; }
+
+        /// <summary>
         /// Determines whether the specified <see cref="System.Object" />, is equal to this instance.
         /// </summary>
         /// <param name="obj">The <see cref="System.Object" /> to compare with this instance.</param>

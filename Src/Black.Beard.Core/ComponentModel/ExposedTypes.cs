@@ -98,9 +98,10 @@ namespace Bb.ComponentModel
             foreach (ExposedAttributeTypeConfiguration configuration in configurations.Attributes)
             {
 
-                var e = new ExposeClassAttribute(configuration.Context, configuration.DisplayName)
+                ExposeClassAttribute e = new ExposeClassAttribute(configuration.Context, configuration.Name)
                 {
                     LifeCycle = configuration.LifeCycle
+
                 };
 
                 list.Add(e);
