@@ -90,21 +90,34 @@ namespace Bb.ComponentModel
         public void Add(ExposedTypeConfigurations configurations)
         {
 
-            Type type = TypeDiscovery.Instance.ResolveByName(configurations.TypeName) ?? throw new TypeLoadException(configurations.TypeName);
-
-            if (!_items.TryGetValue(type, out HashSet<ExposeClassAttribute> list))
-                _items.Add(type, list = new HashSet<ExposeClassAttribute>());
-
-            foreach (ExposedAttributeTypeConfiguration configuration in configurations.Attributes)
+            foreach (ExposedTypeConfiguration configuration in configurations)
             {
 
-                ExposeClassAttribute e = new ExposeClassAttribute(configuration.Context, configuration.Name)
+                Type type = TypeDiscovery.Instance.ResolveByName(configuration.TypeName) 
+                    ?? throw new TypeLoadException(configuration.TypeName);
+
+                if (!_items.TryGetValue(type, out HashSet<ExposeClassAttribute> list))
+                    _items.Add(type, list = new HashSet<ExposeClassAttribute>());
+
+                foreach (ExposedAttributeTypeConfiguration configurationAttribute in configuration.Attributes)
                 {
-                    LifeCycle = configuration.LifeCycle
 
-                };
+                    Type exposedType = null;
+                    if (configurationAttribute.ExposedType != null)
+                    {
+                        exposedType = TypeDiscovery.Instance.ResolveByName(configurationAttribute.ExposedType)
+                            ?? throw new TypeLoadException(configurationAttribute.ExposedType);
+                    }
 
-                list.Add(e);
+                    ExposeClassAttribute e = new ExposeClassAttribute(configurationAttribute.Context, configurationAttribute.Name)
+                    {
+                       LifeCycle = configurationAttribute.LifeCycle,
+                       ExposedType = exposedType ?? type
+                    };
+
+                    list.Add(e);
+
+                }
 
             }
         }

@@ -19,7 +19,7 @@ namespace Black.Beard.Core.UnitTests
 
             // initialize type discovery with path to search for resolve type
             var instance = Bb.ComponentModel.TypeDiscovery.Initialize();
-            KeyValuePair<string, Type>[] _types = instance.GetTypesWithAttributeExposeClass<object>(Bb.ConstantsCore.Cast);
+            KeyValuePair<string, Type>[] _types = instance.GetTypesWithAttributeExposeClass(Bb.ConstantsCore.Cast);
 
             Assert.AreEqual(_types.Count() == 1, true);
 
@@ -51,15 +51,21 @@ namespace Black.Beard.Core.UnitTests
 
             types.Add(new ExposedTypeConfigurations()
             {
-                TypeName = typeof(Test1).AssemblyQualifiedName,
 
-                Attributes = new List<ExposedAttributeTypeConfiguration>()
+                new ExposedTypeConfiguration()
                 {
-                    new ExposedAttributeTypeConfiguration()
+
+                    TypeName = typeof(Test1).AssemblyQualifiedName,
+
+                    Attributes = new List<ExposedAttributeTypeConfiguration>()
                     {
-                        Context = "Test33",
+                        new ExposedAttributeTypeConfiguration()
+                        {
+                            Context = "Test33",
+                        }
                     }
                 }
+
             });
 
             ctx = types.GetContexts();
@@ -79,13 +85,16 @@ namespace Black.Beard.Core.UnitTests
 
             types.Add(new ExposedTypeConfigurations()
             {
-                TypeName = typeof(Test1).AssemblyQualifiedName,
-
-                Attributes = new List<ExposedAttributeTypeConfiguration>()
+                new ExposedTypeConfiguration()
                 {
-                    new ExposedAttributeTypeConfiguration()
+                    TypeName = typeof(Test1).AssemblyQualifiedName,
+
+                    Attributes = new List<ExposedAttributeTypeConfiguration>()
                     {
-                        Context = "Test33",
+                        new ExposedAttributeTypeConfiguration()
+                        {
+                            Context = "Test33",
+                        }
                     }
                 }
             });
