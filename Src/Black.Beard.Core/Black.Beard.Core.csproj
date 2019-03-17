@@ -7,7 +7,7 @@
     <PackageProjectUrl>https://github.com/Black-Beard-Sdk/Core</PackageProjectUrl>
     <Authors>Black Beard</Authors>
     <Copyright>Black Beard</Copyright>
-    <Version>1.0.10</Version>
+    <Version>1.0.11</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 

@@ -82,12 +82,27 @@ namespace Bb.ComponentModel
 
         }
 
+        /// <summary>
+        /// Removes the specified type of exposed types.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns><see cref="ExposedTypes"/></returns>
+        public ExposedTypes Remove(Type type)
+        {
+
+            if (this._items.ContainsKey(type))
+                this._items.Remove(type);
+
+            return this;
+
+        }
 
         /// <summary>
         /// Adds the specified configurations.
         /// </summary>
         /// <param name="configurations">The configurations.</param>
-        public void Add(ExposedTypeConfigurations configurations)
+        /// <returns><see cref="ExposedTypes"/></returns>
+        public ExposedTypes Add(ExposedTypeConfigurations configurations)
         {
 
             foreach (ExposedTypeConfiguration configuration in configurations)
@@ -120,13 +135,17 @@ namespace Bb.ComponentModel
                 }
 
             }
+
+            return this;
+
         }
 
         /// <summary>
         /// Refreshes the specified items.
         /// </summary>
         /// <param name="items">The items.</param>
-        public void Add(IEnumerable<KeyValuePair<Type, IEnumerable<ExposeClassAttribute>>> items)
+        /// <returns><see cref="ExposedTypes"/></returns>
+        public ExposedTypes Add(IEnumerable<KeyValuePair<Type, IEnumerable<ExposeClassAttribute>>> items)
         {
 
             foreach (KeyValuePair<Type, IEnumerable<ExposeClassAttribute>> item in items)
@@ -140,12 +159,15 @@ namespace Bb.ComponentModel
 
             }
 
+            return this;
+
         }
 
         /// <summary>
-        /// push the <see cref="ExposeClassAttribute"/> registered types.
+        /// push the <see cref="ExposeClassAttribute" /> registered types.
         /// </summary>
-        public void AddAttributesInTypeDescriptors()
+        /// <returns><see cref="ExposedTypes"/></returns>
+        public ExposedTypes AddAttributesInTypeDescriptors()
         {
 
             foreach (var type in _items)
@@ -158,6 +180,8 @@ namespace Bb.ComponentModel
                         TypeDescriptor.AddAttributes(type.Key, attribute);
 
             }
+
+            return this;
 
         }
 

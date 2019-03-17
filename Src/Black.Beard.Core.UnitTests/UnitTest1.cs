@@ -52,6 +52,11 @@ namespace Black.Beard.Core.UnitTests
             types.Add(new ExposedTypeConfigurations()
             {
 
+
+            })
+            .Add(new ExposedTypeConfigurations()
+            {
+
                 new ExposedTypeConfiguration()
                 {
 
@@ -81,25 +86,24 @@ namespace Black.Beard.Core.UnitTests
         public void TestExposedTypes2()
         {
 
-            ExposedTypes types = new ExposedTypes();
-
-            types.Add(new ExposedTypeConfigurations()
-            {
-                new ExposedTypeConfiguration()
+            ExposedTypes types = new ExposedTypes()
+                .Add(new ExposedTypeConfigurations()
                 {
-                    TypeName = typeof(Test1).AssemblyQualifiedName,
-
-                    Attributes = new List<ExposedAttributeTypeConfiguration>()
+                    new ExposedTypeConfiguration()
                     {
-                        new ExposedAttributeTypeConfiguration()
+                        TypeName = typeof(Test1).AssemblyQualifiedName,
+
+                        Attributes = new List<ExposedAttributeTypeConfiguration>()
                         {
-                            Context = "Test33",
+                            new ExposedAttributeTypeConfiguration()
+                            {
+                                Context = "Test33",
+                            }
                         }
                     }
-                }
-            });
-
-            types.AddAttributesInTypeDescriptors();
+                })
+                .AddAttributesInTypeDescriptors()
+                ;
 
             var l = TypeDescriptor.GetAttributes(typeof(Test1)).OfType<ExposeClassAttribute>().ToList();
 
