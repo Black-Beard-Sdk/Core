@@ -59,7 +59,8 @@ namespace Bb.ComponentModel
                     if (item2.Context == context)
                         _attributes.Add(item2);
 
-                yield return new KeyValuePair<Type, HashSet<ExposeClassAttribute>>(item1.Key, _attributes);
+                if (_attributes.Any())
+                    yield return new KeyValuePair<Type, HashSet<ExposeClassAttribute>>(item1.Key, _attributes);
 
             }
 
@@ -90,8 +91,8 @@ namespace Bb.ComponentModel
         public ExposedTypes Remove(Type type)
         {
 
-            if (this._items.ContainsKey(type))
-                this._items.Remove(type);
+            if (_items.ContainsKey(type))
+                _items.Remove(type);
 
             return this;
 
@@ -108,7 +109,7 @@ namespace Bb.ComponentModel
             foreach (ExposedTypeConfiguration configuration in configurations)
             {
 
-                Type type = TypeDiscovery.Instance.ResolveByName(configuration.TypeName) 
+                Type type = TypeDiscovery.Instance.ResolveByName(configuration.TypeName)
                     ?? throw new TypeLoadException(configuration.TypeName);
 
                 if (!_items.TryGetValue(type, out HashSet<ExposeClassAttribute> list))
@@ -126,8 +127,8 @@ namespace Bb.ComponentModel
 
                     ExposeClassAttribute e = new ExposeClassAttribute(configurationAttribute.Context, configurationAttribute.Name)
                     {
-                       LifeCycle = configurationAttribute.LifeCycle,
-                       ExposedType = exposedType ?? type
+                        LifeCycle = configurationAttribute.LifeCycle,
+                        ExposedType = exposedType ?? type
                     };
 
                     list.Add(e);
