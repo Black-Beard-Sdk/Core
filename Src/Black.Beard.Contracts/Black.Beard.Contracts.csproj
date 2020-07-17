@@ -10,6 +10,14 @@
     <PackageLicenseUrl>https://github.com/Black-Beard-Sdk/Core/blob/master/LICENSE</PackageLicenseUrl>
     <Version>1.0.12</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
 
 </Project>
