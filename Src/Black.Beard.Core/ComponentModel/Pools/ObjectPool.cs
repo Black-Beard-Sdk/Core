@@ -109,7 +109,8 @@ namespace Bb.Pools
         /// <param name="item"></param>
         public void PutObject(PooledObject<T> item)
         {
-            _objects.Add(item);
+            if (!item.IsDirty)
+                _objects.Add(item);
         }
 
         #endregion implement IObjectPool
