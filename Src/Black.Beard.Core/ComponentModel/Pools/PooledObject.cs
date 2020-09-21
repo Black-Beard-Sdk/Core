@@ -29,6 +29,8 @@ namespace Bb.Pools
         public int InstanceId { get; internal set; }
 
         public T Instance { get; internal set; }
+        
+        public bool IsDirty { get; set; }
 
         public void Dispose(bool disposing)
         {
